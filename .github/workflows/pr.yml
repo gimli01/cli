@@ -20,8 +20,8 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.PAT }}
-          commit-message: chore(pr): create pull request for cli
-          title: title for dep PR x.x.x
+          commit-message: "chore(pr): create pull request for cli"
+          title: "title for dep PR x.x.x"
           body: |
             - Dependency updates
 
