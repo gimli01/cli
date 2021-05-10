@@ -1,0 +1,36 @@
+name: Pull Request Automation
+
+on:
+  push:
+    branches:
+      - gimli01/*
+
+jobs:
+  steps:
+    - uses: actions/checkout@v2.3.1
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3.9.1
+      with:
+        commit-message: "chore: create pull request"
+        committer: gimli01
+        token: ${{ secrets.PAT }}
+        author: ${{ github.actor }} <${{ github.actor }}@github.com>
+        signoff: false
+        delete-branch: false
+        title: "chore: create pull request"
+        body: |
+          Update Report
+          - Some *body*
+        labels: |
+          Priority 1
+        assignees: gimli01
+        reviewers: gimli01
+        team-reviewers: |
+          owners
+          maintainers
+
+    - name: Output
+      run: |
+        echo "Created Pull Request #${{ steps.cpr.outputs.pull-request-number }}"
